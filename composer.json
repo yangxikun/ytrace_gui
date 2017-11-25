@@ -1,0 +1,6 @@
+{
+    "require": {
+        "nikic/fast-route": "^1.2",
+        "nikic/php-parser": "3.1.*"
+    }
+}
