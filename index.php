@@ -12,8 +12,8 @@ if (preg_match('/\.(js|css)$/', $_SERVER["REQUEST_URI"])) {
 require './vendor/autoload.php';
 require './FuncNav.php';
 
-//define('YTRACE_OUTPUT_DIR', ini_get('ytrace.output_dir') . '/');
-define('YTRACE_OUTPUT_DIR', '/tmp/ytrace/');
+define('YTRACE_OUTPUT_DIR', rtrim(ini_get('ytrace.output_dir'), '/') . '/');
+//define('YTRACE_OUTPUT_DIR', '/tmp/ytrace/');
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/trace', 'get_all_trace');

@@ -1,3 +1,5 @@
+[中文README](README_zh.md)
+
 This is a web ui for [ytrace](https://github.com/yangxikun/ytrace), see also [ytrace_chrome_extension](https://github.com/yangxikun/ytrace_chrome_extension).
 
 ![](img/index.png)
@@ -5,6 +7,12 @@ This is a web ui for [ytrace](https://github.com/yangxikun/ytrace), see also [yt
 ![](img/home.png)
 
 ![](img/source.png)
+
+## install
+* git clone this project
+* in project root dir, run `php -S localhost:8088`
+
+> By default, ytrace_gui will detect ytrace.output_dir from ini_get. If need, you can edit `index.php`, change `//define('YTRACE_OUTPUT_DIR', '/tmp/ytrace/');`
 
 ## Wiki
 __Home Page__: List all traced files, click on one of the items in the list to open source page.
