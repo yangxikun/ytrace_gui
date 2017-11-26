@@ -1,4 +1,4 @@
-This is a web ui for [ytrace](https://github.com/yangxikun/ytrace)
+This is a web ui for [ytrace](https://github.com/yangxikun/ytrace), see also [ytrace_chrome_extension](https://github.com/yangxikun/ytrace_chrome_extension).
 
 ![](img/index.png)
 
