@@ -68,7 +68,7 @@ function get_all_trace()
 	$files = scandir(YTRACE_OUTPUT_DIR);
     foreach ($files as $file) {
         $pathinfo = pathinfo($file);
-        if ($pathinfo['extension'] == 'yt') {
+        if (isset($pathinfo['extension']) && $pathinfo['extension'] == 'yt') {
             $handle = fopen(YTRACE_OUTPUT_DIR . $file, 'r');
             $info = explode("\t", rtrim(fgets($handle), "\n"));
             $fileSize = filesize(YTRACE_OUTPUT_DIR . $file);
