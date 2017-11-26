@@ -49,6 +49,9 @@
       '$route': 'activateNav'
     },
     mounted () {
+      this.$bus.$on('clearTraces', () => {
+        this.traceId = ''
+      })
       this.activateNav()
     },
     methods: {

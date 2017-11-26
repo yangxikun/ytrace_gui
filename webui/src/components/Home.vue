@@ -46,6 +46,7 @@
           .then(resp => {
             this.fetchTraces()
           })
+        this.$bus.$emit('clearTraces')
       }
     }
   }
