@@ -39,7 +39,6 @@
         this.$http.get('/trace')
           .then(resp => {
             this.files = resp.data
-            console.log(this.files)
           })
       },
       clearTraces () {

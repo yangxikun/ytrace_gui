@@ -6,6 +6,7 @@
     <traces-nav :enter="enter" :search="search" :select="select" v-on:close="close" v-on:updateShowLen="updateShowLen" v-if="type === 'traces-nav'"></traces-nav>
     <func-nav :enter="enter" :search="search" :select="select" v-on:close="close" v-on:updateShowLen="updateShowLen" v-if="type === 'func-nav'"></func-nav>
     <file-nav :enter="enter" :search="search" :select="select" v-on:close="close" v-on:updateShowLen="updateShowLen" v-if="type === 'file-nav'"></file-nav>
+    <breakpoint-nav :enter="enter" :search="search" :select="select" v-on:close="close" v-on:updateShowLen="updateShowLen" v-if="type === 'breakpoint-nav'"></breakpoint-nav>
   </b-modal>
 </template>
 
@@ -13,11 +14,13 @@
   import TracesNav from './TracesNav.vue'
   import FuncNav from './FuncNav.vue'
   import FileNav from './FileNav.vue'
+  import BreakpointNav from './BreakpointNav.vue'
   export default {
     components: {
       TracesNav,
       FuncNav,
-      FileNav
+      FileNav,
+      BreakpointNav
     },
     data () {
       return {
@@ -30,7 +33,6 @@
     },
     mounted () {
       document.onkeydown = (ev) => {
-        console.log(ev)
         if (ev.key === 'Escape') {
           this.type = ''
           this.enter = false
@@ -58,6 +60,14 @@
             this.search = ''
             this.select = 0
             this.type = 'file-nav'
+            this.enter = false
+            this.$refs.popupList.show()
+            break
+          case ev.key === 'b' && ev.ctrlKey && this.$route.name === 'Source':
+            ev.preventDefault()
+            this.search = ''
+            this.select = 0
+            this.type = 'breakpoint-nav'
             this.enter = false
             this.$refs.popupList.show()
             break

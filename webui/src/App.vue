@@ -5,7 +5,9 @@
 
         <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-        <b-navbar-brand href="#">Ytrace</b-navbar-brand>
+        <b-navbar-brand href="#">
+          <router-link class="nav-link" to="/">Ytrace</router-link>
+        </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
 
@@ -15,9 +17,6 @@
             </b-nav-item>
             <b-nav-item>
               <router-link :event="traceId ? 'click' : ''" class="nav-link" :to="'/trace/source/'+traceId" v-bind:class="{ disabled: traceId == '', active: nav == 'Source'}">Source</router-link>
-            </b-nav-item>
-            <b-nav-item>
-              <router-link :event="traceId ? 'click' : ''" class="nav-link" :to="'/trace/call/'+traceId" v-bind:class="{ disabled: traceId == '', active: nav == 'Stack'}">Stack</router-link>
             </b-nav-item>
           </b-nav>
 
@@ -50,7 +49,6 @@
       '$route': 'activateNav'
     },
     mounted () {
-      console.log(this.$route)
       this.activateNav()
     },
     methods: {

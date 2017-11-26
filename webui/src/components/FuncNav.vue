@@ -42,7 +42,7 @@
     },
     methods: {
       fetchFileNav () {
-        this.$http.get('/file-nav?file=' + encodeURI(this.$bus.curSourceFile))
+        this.$http.get('/func-nav?file=' + encodeURI(this.$bus.curSourceFile))
           .then(resp => {
             this.search = ''
             let items = []

@@ -20,12 +20,10 @@
       }
     },
     mounted () {
-      console.log('FileNav-->mounted')
       this.fetchFileNav()
     },
     watch: {
       search: function (val) {
-        console.log(val)
         let showItems = []
         for (let index in this.items) {
           if (this.items[index].indexOf(val) >= 0) {

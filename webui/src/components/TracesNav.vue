@@ -31,7 +31,6 @@
     },
     watch: {
       search: function (val) {
-        console.log(val)
         let showFiles = []
         for (let index in this.files) {
           if (this.files[index].uri && this.files[index].uri.indexOf(val) >= 0) {

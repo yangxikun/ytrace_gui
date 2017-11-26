@@ -7,9 +7,16 @@ import Axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import Bus from './Bus.js'
 import VueLocalStorage from 'vue-localstorage'
+import VueMarkdown from 'vue-markdown'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import 'vue-awesome/icons/close'
+import Icon from 'vue-awesome/components/Icon'
+
+Vue.component('icon', Icon)
+Vue.component('VueMarkdown', VueMarkdown)
 
 Vue.use(VueLocalStorage)
 

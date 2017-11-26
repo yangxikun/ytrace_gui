@@ -18,8 +18,10 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue": "^2.4.2",
+    "vue-awesome": "^2.3.4",
     "vue-loading-template": "^0.1.7",
     "vue-localstorage": "^0.5.0",
+    "vue-markdown": "^2.2.4",
     "vue-router": "^2.7.0"
   },
   "devDependencies": {

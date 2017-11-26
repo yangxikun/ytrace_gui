@@ -79,8 +79,16 @@
       this.$bus.$on('gotoLine', (line) => {
         this.sourceEditor.gotoLine(line)
       })
-      this.$bus.$on('openFile', (file) => {
-        this.justLoadFile(file)
+      this.$bus.$on('openFile', (file, line) => {
+        this.justLoadFile(file, line)
+      })
+      this.$bus.$on('removeBp', (file, line) => {
+        if (this.$bus.curSourceFile === file) {
+          const lines = this.$refs.code.querySelector('div.ace_gutter-layer').childNodes
+          const el = lines[line - 1]
+          el.style.color = null
+          el.style.fontWeight = null
+        }
       })
     },
     activated () {
@@ -101,7 +109,6 @@
           const row = event.editor.getCursorPosition().row + 1
           if (event.domEvent.ctrlKey) {
             // set/clear breakpoint
-            console.log('set breakpoint', row)
             let breakpoints = this.$localStorage.get(this.file)
             if (breakpoints) {
               breakpoints = JSON.parse(breakpoints)
@@ -122,7 +129,7 @@
             this.$localStorage.set(this.file, JSON.stringify(breakpoints))
           } else {
             // jump
-            const fileCoverage = this.fileCoverage[this.file]
+            const fileCoverage = this.fileCoverage[this.$bus.curSourceFile]
             let jumpStep = -1
             for (let line in fileCoverage) {
               if (Number(line) === row) {
@@ -192,8 +199,6 @@
       },
       stepInto: function (curStep, nextStep) {
         const item = this.items[nextStep]
-        console.log('stepInto', curStep, nextStep)
-        console.log(this.items)
         if (!item) return
         if (curStep >= 0) {
           this.stepHistory.push(curStep)
@@ -340,12 +345,17 @@
             })
           })
       },
-      justLoadFile: function (file) {
+      justLoadFile: function (file, line) {
         this.$bus.curSourceFile = file
         this.$http.get('/source?file=' + encodeURI(file))
           .then(resp => {
             const editor = this.sourceEditor
             editor.setValue(resp.data)
+            if (line) {
+              editor.gotoLine(line)
+            } else {
+              editor.navigateFileEnd()
+            }
             editor.renderer.on('afterRender', () => {
               const lines = this.$refs.code.querySelector('div.ace_gutter-layer').childNodes
               const fileCoverage = this.fileCoverage[file]
@@ -370,7 +380,6 @@
                   el.style.fontWeight = 'bold'
                 }
               }
-              editor.focus()
             })
           })
       }
