@@ -58,8 +58,8 @@ __Source Page__: 显示跟踪内容详情。
   - ctrl+r: 打开当前显示的源码文件函数/方法的列表浮框，只能在Source 页面使用
   - ctrl+b: 打开断点列表浮框，只能在Source 页面使用
 
-[ytrace_gui](https://github.com/miaolz123/vue-markdown)
-[report issue](https://github.com/miaolz123/vue-markdown)
+[ytrace_gui](https://github.com/yangxikun/ytrace_gui)
+[report issue](https://github.com/yangxikun/ytrace_gui/issues)
         `,
         ChromeExtension: `__Options__
 + ytrace.*_name: 配置cookie的名称，必须与ytrace.ini保持一致，通常不需要更改默认值。
@@ -68,8 +68,8 @@ __弹框__
 + 开启/关闭跟踪
 + 设置跟踪的配置，ytrace PHP扩展会从cookie里检测它们。
 
-[ytrace_chrome_extension](https://github.com/miaolz123/vue-markdown)
-[report issue](https://github.com/miaolz123/vue-markdown)
+[ytrace_chrome_extension](https://github.com/yangxikun/ytrace_chrome_extension)
+[report issue](https://github.com/yangxikun/ytrace_chrome_extension/issues)
         `,
         PHPExtension: `__INI 配置__
 + auto_enable: 类型：boolean，默认值：0, PHP_INI_SYSTEM.
@@ -121,6 +121,9 @@ __PHP 函数__
   - 开启跟踪，并写入到$traced_file_name
 + ytrace_disable ()
   - 停止跟踪，返回跟踪文件名
+
+[ytrace](https://github.com/yangxikun/ytrace)
+[report issue](https://github.com/yangxikun/ytrace/issues)
         `
       }
     }

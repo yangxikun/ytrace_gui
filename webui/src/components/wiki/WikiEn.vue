@@ -58,8 +58,8 @@ __Source Page__: show detail of traced files.
   - ctrl+r: open current source file function/method popup list, only available in source page
   - ctrl+b: open breakpoints popup list, only available in source page
 
-[ytrace_gui](https://github.com/miaolz123/vue-markdown)
-[report issue](https://github.com/miaolz123/vue-markdown)
+[ytrace_gui](https://github.com/yangxikun/ytrace_gui)
+[report issue](https://github.com/yangxikun/ytrace_gui/issues)
         `,
         ChromeExtension: `__Options__
 + ytrace.*_name: cookie name will be used, must be same with ytrace.ini config, generally you don't need to change the default config.
@@ -68,8 +68,8 @@ __Popup__
 + enable/disable trace
 + set trace config, ytrace php extension will detect it from cookie
 
-[ytrace_chrome_extension](https://github.com/miaolz123/vue-markdown)
-[report issue](https://github.com/miaolz123/vue-markdown)
+[ytrace_chrome_extension](https://github.com/yangxikun/ytrace_chrome_extension)
+[report issue](https://github.com/yangxikun/ytrace_chrome_extension/issues)
         `,
         PHPExtension: `__INI config__
 + auto_enable: Type: boolean, Default value: 0, PHP_INI_SYSTEM.
@@ -118,6 +118,9 @@ __PHP function__
   - enable trace when trace is disable, write trace to $traced_file_name.
 + ytrace_disable ()
   - disable trace when trace is enable, return traced file.
+
+[ytrace](https://github.com/yangxikun/ytrace)
+[report issue](https://github.com/yangxikun/ytrace/issues)
         `
       }
     }
