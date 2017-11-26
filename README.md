@@ -10,6 +10,7 @@ This is a web ui for [ytrace](https://github.com/yangxikun/ytrace), see also [yt
 
 ## install
 * git clone this project
+* composer install
 * in project root dir, run `php -S localhost:8088`
 
 > By default, ytrace_gui will detect ytrace.output_dir from ini_get. If need, you can edit `index.php`, change `//define('YTRACE_OUTPUT_DIR', '/tmp/ytrace/');`

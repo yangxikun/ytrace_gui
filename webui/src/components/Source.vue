@@ -359,7 +359,7 @@
             editor.renderer.on('afterRender', () => {
               const lines = this.$refs.code.querySelector('div.ace_gutter-layer').childNodes
               const fileCoverage = this.fileCoverage[file]
-              let breakpoints = this.$localStorage.get(this.file)
+              let breakpoints = this.$localStorage.get(file)
               if (breakpoints) {
                 breakpoints = JSON.parse(breakpoints)
               }

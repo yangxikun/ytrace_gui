@@ -8,6 +8,7 @@
 
 ## 安装
 * git clone 当前项目
+* composer install
 * 在项目的根目录，执行`php -S localhost:8088`
 
 > 默认的，ytrace_gui会通过ini_get获取ytrace.output_dir的值。如果需要的话，你可以通过编辑`index.php`，修改`//define('YTRACE_OUTPUT_DIR', '/tmp/ytrace/');`，以设置ytrace的输出目录。
