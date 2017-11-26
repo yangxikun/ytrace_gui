@@ -73,6 +73,34 @@
       this.codeHeight = docHeight - document.getElementById('head').clientHeight - 44
       this.sourceEditor = this.initEditor(this.$refs.code, true)
       delete this.sourceEditor.keyBinding.$defaultHandler.commandKeyBinding['ctrl-p']
+      this.sourceEditor.renderer.on('afterRender', () => {
+        const lines = this.$refs.code.querySelector('div.ace_gutter-layer').childNodes
+        const fileCoverage = this.fileCoverage[this.$bus.curSourceFile]
+        let breakpoints = this.$localStorage.get(this.$bus.curSourceFile)
+        if (breakpoints) {
+          breakpoints = JSON.parse(breakpoints)
+        }
+        for (let index = 0; index < lines.length; index++) {
+          const el = lines[index]
+          if (fileCoverage[el.innerText] !== undefined) {
+            if (this.file === this.$bus.curSourceFile && this.line === Number(el.innerText)) {
+              el.style.backgroundColor = '#1e7e34'
+            } else {
+              el.style.backgroundColor = '#87ff9d'
+            }
+          } else {
+            el.style.backgroundColor = null
+            el.style.cursor = null
+          }
+          if (breakpoints && breakpoints[el.innerText]) {
+            el.style.color = '#ff0000'
+            el.style.fontWeight = 'bold'
+          } else {
+            el.style.color = null
+            el.style.fontWeight = null
+          }
+        }
+      })
       this.varEditor = this.initEditor(this.$refs.var, false)
       this.varEditor.keyBinding.$defaultHandler.commandKeyBinding = {}
       this.fetchTrace()
@@ -106,33 +134,33 @@
         editor.renderer.$cursorLayer.element.style.opacity = 0
         editor.renderer.setShowGutter(lineno)
         editor.on('gutterclick', (event) => {
-          const row = event.editor.getCursorPosition().row + 1
+          console.log(event)
+          const row = event.domEvent.target.innerText
           if (event.domEvent.ctrlKey) {
             // set/clear breakpoint
-            let breakpoints = this.$localStorage.get(this.file)
+            let breakpoints = this.$localStorage.get(this.$bus.curSourceFile)
             if (breakpoints) {
               breakpoints = JSON.parse(breakpoints)
             } else {
               breakpoints = {}
             }
-            const key = String(row)
             const el = event.domEvent.target
-            if (breakpoints[key]) {
-              delete breakpoints[key]
+            if (breakpoints[row]) {
+              delete breakpoints[row]
               el.style.color = null
               el.style.fontWeight = null
             } else {
-              breakpoints[String(row)] = true
+              breakpoints[row] = true
               el.style.color = '#ff0000'
               el.style.fontWeight = 'bold'
             }
-            this.$localStorage.set(this.file, JSON.stringify(breakpoints))
+            this.$localStorage.set(this.$bus.curSourceFile, JSON.stringify(breakpoints))
           } else {
             // jump
             const fileCoverage = this.fileCoverage[this.$bus.curSourceFile]
             let jumpStep = -1
             for (let line in fileCoverage) {
-              if (Number(line) === row) {
+              if (line === row) {
                 jumpStep = fileCoverage[line]
               }
             }
@@ -317,32 +345,6 @@
             const editor = this.sourceEditor
             editor.setValue(resp.data)
             editor.gotoLine(this.line)
-            editor.renderer.on('afterRender', () => {
-              const lines = this.$refs.code.querySelector('div.ace_gutter-layer').childNodes
-              const fileCoverage = this.fileCoverage[this.file]
-              let breakpoints = this.$localStorage.get(this.file)
-              if (breakpoints) {
-                breakpoints = JSON.parse(breakpoints)
-              }
-              for (let index = 0; index < lines.length; index++) {
-                const el = lines[index]
-                if (fileCoverage[el.innerText] !== undefined) {
-                  if (this.line === Number(el.innerText)) {
-                    el.style.backgroundColor = '#1e7e34'
-                  } else {
-                    el.style.backgroundColor = '#87ff9d'
-                  }
-                } else {
-                  el.style.backgroundColor = null
-                  el.style.cursor = null
-                }
-                if (breakpoints && breakpoints[el.innerText]) {
-                  el.style.color = '#ff0000'
-                  el.style.fontWeight = 'bold'
-                }
-              }
-              editor.focus()
-            })
           })
       },
       justLoadFile: function (file, line) {
@@ -356,31 +358,6 @@
             } else {
               editor.navigateFileEnd()
             }
-            editor.renderer.on('afterRender', () => {
-              const lines = this.$refs.code.querySelector('div.ace_gutter-layer').childNodes
-              const fileCoverage = this.fileCoverage[file]
-              let breakpoints = this.$localStorage.get(file)
-              if (breakpoints) {
-                breakpoints = JSON.parse(breakpoints)
-              }
-              for (let index = 0; index < lines.length; index++) {
-                const el = lines[index]
-                if (fileCoverage[el.innerText] !== undefined) {
-                  if (this.file === this.$bus.curSourceFile && this.line === Number(el.innerText)) {
-                    el.style.backgroundColor = '#1e7e34'
-                  } else {
-                    el.style.backgroundColor = '#87ff9d'
-                  }
-                } else {
-                  el.style.backgroundColor = null
-                  el.style.cursor = null
-                }
-                if (breakpoints && breakpoints[el.innerText]) {
-                  el.style.color = '#ff0000'
-                  el.style.fontWeight = 'bold'
-                }
-              }
-            })
           })
       }
     }
