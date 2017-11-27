@@ -7,6 +7,12 @@ I need to take over some project. To understand the code logic, I have to debug 
 
 So, I create this tool, make traces combined with step-through debugging. Hope it useful for you.
 
+## feature
+* step through debugging
+* break point
+* jump to any executed source code line
+* step back through your step history
+
 ![](img/index.png)
 
 ![](img/home.png)
