@@ -1,7 +1,9 @@
 <?php
-$trace_filename = ytrace_disable();
-if (file_exists($trace_filename)) {
-    unlink($trace_filename);
+if (function_exists('ytrace_disable')) {
+    $trace_filename = ytrace_disable();
+    if (file_exists($trace_filename)) {
+        unlink($trace_filename);
+    }
 }
 ini_set('display_errors', 'off');
 

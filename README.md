@@ -2,13 +2,18 @@
 
 This is a web ui for [ytrace](https://github.com/yangxikun/ytrace), see also [ytrace_chrome_extension](https://github.com/yangxikun/ytrace_chrome_extension).
 
+## Why
+I need to take over some project. To understand the code logic, I have to debug the code(many code is dirty but run:-)). I can use var_dump/die(this is inefficient) or the powerful debug tool XDebug(but traces and remote debugging still not so convenient).
+
+So, I create this tool, make traces combined with step-through debugging. Hope it useful for you.
+
 ![](img/index.png)
 
 ![](img/home.png)
 
 ![](img/source.png)
 
-## install
+## Install
 * git clone this project
 * composer install
 * in project root dir, run `php -S localhost:8088`

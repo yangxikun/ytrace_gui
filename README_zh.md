@@ -1,5 +1,10 @@
 本项目为 [ytrace](https://github.com/yangxikun/ytrace)提供了web ui界面，对应的还有[ytrace_chrome_extension](https://github.com/yangxikun/ytrace_chrome_extension).
 
+## 背景
+工作上，有时会需要接手一些旧项目或者熟悉新项目。为了理解项目中的代码逻辑，我们需要不断的调试代码（大部分代码都是dirty but run:-))，通常的调试方式是var_dump/die（低效的），或者使用Xdebug的跟踪、单步调试功能，但觉得这些方式还是不够方便。
+
+于是，开发了这个工具，将跟踪和单步调试结合起来，目前用起来还挺方便的，希望也对你有用。
+
 ![](img/index.png)
 
 ![](img/home.png)
